@@ -71,7 +71,7 @@ function onClick_handler(e) {
          type		: 'GET',
          dataType	: 'json',
          success	: 	function (data, textStatus, jqXHR) {	
-                            var reader, aFeatures = [], props = {};
+                            var reader, aFeatures = [], props = {}, s;
                             reader = new ol.format.GeoJSON();
                             aFeatures = reader.readFeatures(jqXHR.responseText);
                             if (aFeatures.length === 0) {
@@ -83,8 +83,10 @@ function onClick_handler(e) {
                                 console.log('WFS BBOX query returned > 1 feature.');
                             }
                             props = aFeatures[0].getProperties();
-                            console.log('You clicked on ' + props['stan_addr'] + '.');
-                            // blah, blah, blah
+                            s = 'You clicked on ' + props['stan_addr'] + '.'
+                            console.log(s);
+                            alert(s);
+                            // etc.
                         }, // end of 'success' handler
         error       :   function (qXHR, textStatus, errorThrown ) {
                             alert('WFS BBOX query.\n' +
